@@ -1,0 +1,17 @@
+<!--pages/dictionary/dictionary.wxml-->
+<view class="container">
+  <form >
+    <view class='inputContent'>
+      <block wx:for="{{wordLength}}" wx:key="item">
+        <input class='iptbox' value="{{inputValue.length>=index+1?inputValue[index]:''}}" catchtap='onTap'></input>
+      </block>
+    </view>
+    <input name="password" class='ipt' value='{{inputValue}}' maxlength="{{wordLength}}" focus="{{isFocus}}" bindinput="onFocus"></input>
+  </form>
+  <view class='content'>
+    <text class="translation">{{word.translation}}</text>
+  </view>
+  <view class='footer'>
+    <button id='refresh' bindtap='onChange'>换一个</button>
+  </view>
+</view>
