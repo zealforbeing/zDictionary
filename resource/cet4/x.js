@@ -1,0 +1,1 @@
+var json={"data":[{"id":3371741,"word":"x-ray","phonetic":"'eks'rei","definition":"v. examine by taking x-rays\nv. take an x-ray of something or somebody","translation":"a. X射线的\nvt. 用X光检查, 照X光\nvi. 使用X光","tag":"zk cet4 ielts","exchange":"s:x-rays/i:x-raying/p:x-rayed/3:x-rays/d:x-rayed/f:x-rays"}]};module.exports={data:json.data}

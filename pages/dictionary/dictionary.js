@@ -1,6 +1,5 @@
 // pages/dictionary/dictionary.js
-
-var dictionaryJSON = require("../../resource/dictionaryJSON.js")
+var cet4Util = require("../../utils/dictionary/cet4Util.js");
 
 Page({
 
@@ -19,67 +18,21 @@ Page({
    */
   onLoad: function (options) {
     console.log("dictionary.js onLoad");
+    cet4Util.init();
     this.onChange();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onChange: function() {
-    var cet4 = dictionaryJSON.data.cet4;
-    var obj = cet4[parseInt(Math.random() * 100000 % cet4.length)];
-    console.log(obj);
-    this.setData({
-      word: obj,
-      wordLength : obj.word.length,
-      inputValue : '',
+    var that = this;
+    cet4Util.randomWord(function(obj) {
+      console.log(obj);
+      that.setData({
+        word: obj,
+        wordLength: obj.word.length,
+        inputValue: '',
+      });
     });
+    
   },
 
   onFocus: function(e) {
