@@ -1,5 +1,6 @@
 // pages/dictionary/dictionary.js
-var cet4Util = require("../../utils/dictionary/cet4Util.js");
+
+import { CET4Util } from '../../utils/dictionary/CET4Util'
 
 Page({
 
@@ -18,13 +19,16 @@ Page({
    */
   onLoad: function (options) {
     console.log("dictionary.js onLoad");
-    cet4Util.init();
+    // cet4Util.init();
     this.onChange();
   },
 
+  /**
+   * 更新单词
+   */
   onChange: function() {
     var that = this;
-    cet4Util.randomWord(function(obj) {
+    CET4Util.getRandomWord(function(obj) {
       console.log(obj);
       that.setData({
         word: obj,
@@ -35,6 +39,9 @@ Page({
     
   },
 
+  /**
+   * 监听输入框文字变化
+   */
   onFocus: function(e) {
     var that = this;
     console.log(e.detail.value);
@@ -59,10 +66,27 @@ Page({
     }
   },
 
+  /**
+   * 单击输入框
+   */
   onTap: function() {
     var that = this;
     that.setData({
       isFocus: true,
     });
+  },
+
+  /**
+   * 偷看答案
+   */
+  onPeep: function() {
+    var that = this;
+    wx.showModal({
+      title: that.data.word.word + " [" + that.data.word.phonetic + "]",
+      content:  that.data.word.definition,
+      showCancel: false,
+      success: function (res) {
+      }
+    })
   },
 })

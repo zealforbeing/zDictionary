@@ -7,5 +7,8 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <button bindtap='tapDictionary'>小字典</button>
+  <view class='menu'>
+    <button bindtap='tapDictionary'>CET4词汇记忆</button>
+  </view>
+  
 </view>

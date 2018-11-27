@@ -3,7 +3,7 @@
   <form >
     <view class='inputContent'>
       <block wx:for="{{wordLength}}" wx:key="item">
-        <input class='iptbox' value="{{inputValue.length>=index+1?inputValue[index]:''}}" catchtap='onTap'></input>
+        <input class='iptbox' disabled='true' value="{{inputValue.length>=index+1?inputValue[index]:''}}" catchtap='onTap'></input>
       </block>
     </view>
     <input name="password" class='ipt' value='{{inputValue}}' maxlength="{{wordLength}}" focus="{{isFocus}}" bindinput="onFocus"></input>
@@ -13,5 +13,6 @@
   </view>
   <view class='footer'>
     <button id='refresh' bindtap='onChange'>换一个</button>
+    <button class='peep' bindtap='onPeep'>偷看答案</button>
   </view>
 </view>

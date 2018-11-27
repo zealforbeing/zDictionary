@@ -1,31 +1,54 @@
+/**
+ * 词汇数据工具类
+ */
 
-var data = {};
+export class CET4Util {
+  /**
+   * 词汇数据
+   */
+  data = {};
 
-function init(){
-  var charCode = 'a'.charCodeAt(0);
-  var chatList = [];
-  for (let index = 0; index < 26; index++) {
-    var key = String.fromCharCode(charCode + index);
-    chatList.push(key);
+  static getInstance() {
+    if (!CET4Util.instance) {
+      CET4Util.instance = new CET4Util();
+    }
+    return CET4Util.instance;
   }
 
-  chatList.forEach(element => {
-    data[element] = require("../../resource/cet4/" + element + ".js").data;
-  });
-}
+  constructor() {
+    this.init();
+  }
 
-function randomWord(callback) {
-  var charCode = parseInt(Math.random() * 100 % 26) + 'a'.charCodeAt(0);
-  var list = data[ String.fromCharCode(charCode) ];
-  var length = list.length;
-  var sub = parseInt(Math.random() * Math.pow(10, length) % length);
-  callback(list[sub]);
-}
+  /**
+   * 初始化词汇数据
+   */
+  init() {
+    var charCode = 'a'.charCodeAt(0);
+    var chatList = [];
+    for(let index = 0; index< 26; index++) {
+      var key = String.fromCharCode(charCode + index);
+      chatList.push(key);
+    }
 
-module.exports = {
-  data: data,
-  init: init,
-  randomWord: randomWord,
-}
+    chatList.forEach(element => {
+      this.data[element] = require("../../resource/cet4/" + element + ".js").data;
+    });
+  }
 
+  /**
+   * 获取随机数据
+   */
+  randomWord(callback) {
+    var charCode = parseInt(Math.random() * 100 % 26) + 'a'.charCodeAt(0);
+    var list = this.data[String.fromCharCode(charCode)];
+    var length = list.length - 1;
+    var sub = parseInt(Math.random() * Math.pow(10, length) % length);
+
+    callback(list[sub]);
+  }
+
+  static getRandomWord(callback) {
+    CET4Util.getInstance().randomWord(callback);
+  }
+}
 
