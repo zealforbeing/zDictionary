@@ -43,7 +43,7 @@ export class CET4Util {
     var list = this.data[String.fromCharCode(charCode)];
     var length = list.length - 1;
     var sub = parseInt(Math.random() * Math.pow(10, length) % length);
-
+    
     callback(list[sub]);
   }
 
