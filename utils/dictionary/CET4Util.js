@@ -1,7 +1,7 @@
+
 /**
  * 词汇数据工具类
  */
-
 export class CET4Util {
   /**
    * 词汇数据
@@ -42,8 +42,12 @@ export class CET4Util {
     var charCode = parseInt(Math.random() * 100 % 26) + 'a'.charCodeAt(0);
     var list = this.data[String.fromCharCode(charCode)];
     var length = list.length - 1;
-    var sub = parseInt(Math.random() * Math.pow(10, length) % length);
-    
+    var sub = 0;
+    if (length > 0) {
+      //总共4000多个单词，这里用10000求模
+      sub = parseInt(Math.random() * 10000 % length);
+    }
+    console.log(String.fromCharCode(charCode), sub);
     callback(list[sub]);
   }
 
